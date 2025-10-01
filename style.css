@@ -1,16 +1,63 @@
 :root {
-    background: #E3EDFB;
+  --background: #e3edfb;
 
-    --color-icon: #0B3A67;
+  --color-icon: #0b3a67;
 
-    --image-width: 8rem;
-    --card-padding: 1rem;
+  --image-width: 8rem;
+  --card-padding: 1rem;
 
-    --font-heading: 1.75rem;
+  --font-heading: 1.75rem;
 
-    /* Når du synes, du er færdig, så ændr værdien herunder til '1' for at se dit resultat i browseren */
-    --hide-overlay: 0;
+  /* Når du synes, du er færdig, så ændr værdien herunder til '1' for at se dit resultat i browseren */
+  --hide-overlay: 3;
 }
 
-
 /* Begynd her... */
+
+.container {
+  margin: 2rem auto;
+  width: 400px;
+  height: 167px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 10px;
+  padding: var(--card-padding);
+  background-color: var(--background);
+  color: var(-);
+  div:has(img) {
+    overflow: hidden;
+    width: var(--image-width);
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+  }
+  img {
+    justify-self: stretch;
+    object-fit: cover;
+    scale: 170%;
+    transform: translate(0, 20px);
+  }
+  h1 {
+    font-size: var(--font-heading);
+    color: black;
+    font-weight: bold;
+  }
+  p {
+    color: #0c9ea8;
+    font-weight: 600;
+  }
+  div:has(h1, p) {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    height: 6rem;
+  }
+  svg {
+    color: var(--color-icon);
+    width: 25px;
+    height: 25px;
+  }
+  div:has(svg) {
+    display: flex;
+    justify-content: start;
+  }
+}

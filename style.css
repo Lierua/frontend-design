@@ -1,75 +1,129 @@
+.wrapper {
+  container-type: inline-size;
+}
 .bento {
+  display: grid;
+  gap: var(--spacing-base);
+  grid-template-columns: [banner-start img2-start] 1fr [list-start img2-end] 1fr [list-end banner-end logo-start tag-start] 1fr [logo-end tag-end];
+  grid-template-rows: [logo-start banner-start] 2fr [banner-end img2-start list-start] 2fr [logo-end tag-start] 1fr [img2-end list-end tag-end];
+  @container (width < 1000px) {
+    grid-template-columns: [banner-start logo-start tag-start] 1fr [logo-end img2-start tag-end list-start] 1fr [banner-end img2-end list-end];
+    grid-template-rows: [banner-start] auto [banner-end logo-start img2-start] 2fr [logo-end img2-end list-start tag-start] 1fr [list-end tag-end];
+  }
+  .title {
+    --bg: var(--color-brand-yellow);
+    grid-area: banner;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    flex-wrap: wrap;
+    div {
+      display: flex;
+      justify-content: space-between;
+      gap: 2rem;
+      p {
+        font-size: clamp(1rem, -1.5rem + 8vw, 1.5rem);
+      }
+    }
+    @container (width < 600px) {
+      color: blue;
+    }
+  }
+
+  .list {
+    --bg: var(--color-brand-coffee);
+    grid-area: list;
+    li {
+      font-size: clamp(2rem, 3rem, 3rem);
+    }
+  }
+
+  .image-1 {
+    grid-area: logo;
+    color: var(--color-text-accent);
     display: grid;
-    gap: var(--spacing-base);
-
-    .title {
-        --bg: var(--color-brand-yellow);
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-rows: 1fr auto 1fr;
+    img {
+      grid-column: 1/-1;
+      grid-row: 1/-1;
     }
-
-    .list {
-        --bg: var(--color-brand-coffee);
+    p {
+      text-align: center;
+      grid-column: 2;
+      font-size: 1.5rem;
+      padding: 2rem;
     }
-
-    .image-1 {
-        color: var(--color-text-accent);
+    :nth-child(2) {
+      grid-row: 1;
     }
-
-    .tag {
-        --bg: var(--color-brand-olive);
-        font-size: 2rem;
-        line-height: 1.2;
+    :nth-child(3) {
+      grid-row: 3;
+      align-self: self-end;
     }
+  }
+  .image-2 {
+    grid-area: img2;
+    > * {
+      height: 100%;
+      width: 100%;
+    }
+  }
+  .tag {
+    --bg: var(--color-brand-olive);
+    font-size: 2rem;
+    line-height: 1.2;
+    grid-area: tag;
+  }
 }
 
 .card {
-    border-radius: var(--border-radius);
-    background: var(--bg);
-    overflow: clip;
+  border-radius: var(--border-radius);
+  background: var(--bg);
+  overflow: clip;
 
-    &:not(:has(img)) {
-        padding: var(--spacing-base);
-    }
+  &:not(:has(img)) {
+    padding: var(--spacing-base);
+  }
 }
 
 h2 {
-    font-size: 4rem;
-    line-height: 1.1;
-    color: var(--color-text-dark);
-    margin-bottom: var(--spacing-base);
+  font-size: 4rem;
+  line-height: 1.1;
+  color: var(--color-text-dark);
+  margin-bottom: var(--spacing-base);
 }
 
 .website {
-    font-size: 1.2rem;
-    margin-top: auto;
+  font-size: 1.2rem;
+  margin-top: auto;
 }
 
-
-
 @layer {
-    :root {
-        /* Brand Colors */
-        --color-brand-yellow: #FFB800;
-        --color-brand-olive: #4A5F32;
-        --color-brand-coffee: #5C3C2E;
+  :root {
+    /* Brand Colors */
+    --color-brand-yellow: #ffb800;
+    --color-brand-olive: #4a5f32;
+    --color-brand-coffee: #5c3c2e;
 
-        /* Background Colors */
-        --color-background-dark: #2C1810;
-        --color-background-primary: var(--color-brand-yellow);
-        --color-background-menu: var(--color-brand-coffee);
-        --color-background-accent: var(--color-brand-olive);
+    /* Background Colors */
+    --color-background-dark: #2c1810;
+    --color-background-primary: var(--color-brand-yellow);
+    --color-background-menu: var(--color-brand-coffee);
+    --color-background-accent: var(--color-brand-olive);
 
-        /* Text Colors */
-        --color-text-dark: var(--color-background-dark);
-        --color-text-light: #FFFFFF;
-        --color-text-accent: var(--color-brand-yellow);
+    /* Text Colors */
+    --color-text-dark: var(--color-background-dark);
+    --color-text-light: #ffffff;
+    --color-text-accent: var(--color-brand-yellow);
 
-        /* Component Colors */
-        --color-logo-icon: var(--color-text-dark);
-        --color-menu-highlight: var(--color-brand-yellow);
+    /* Component Colors */
+    --color-logo-icon: var(--color-text-dark);
+    --color-menu-highlight: var(--color-brand-yellow);
 
-        /* Layout */
-        --border-radius: 24px;
-        --spacing-base: 20px;
-        --spacing-large: 40px;
-    }
+    /* Layout */
+    --border-radius: 24px;
+    --spacing-base: 20px;
+    --spacing-large: 40px;
+  }
 }

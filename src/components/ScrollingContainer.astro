@@ -14,7 +14,18 @@ const { cardContent } = Astro.props;
 </ul>
 
 <style>
+  :root {
+    --black: rgb(19, 19, 19);
+    --yellow: rgb(226, 221, 145);
+    --gray: rgb(243, 243, 243);
+  }
   ul {
     list-style: none;
+    li {
+      width: 300px;
+      background-color: var(--gray);
+      border-radius: 15px;
+      padding: 1rem;
+    }
   }
 </style>

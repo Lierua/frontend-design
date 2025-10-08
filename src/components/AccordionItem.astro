@@ -24,10 +24,23 @@ const { id, question, answer, linkBlock } = props;
 </details>
 
 <style>
+
   details {
+    interpolate-size: allow-keywords;
     color: hsl(190 30% 12%);
     border-bottom: 1px solid #dadada;
+    overflow: hidden;
 
+    &::details-content {
+      display: block;
+      block-size: 0;
+      transition-property: block-size content-visibility;
+      transition-duration: 0.5s;
+      transition-behavior: allow-discrete;
+    }
+    &[open]::details-content {
+      block-size: auto;
+    }
     summary {
       font-weight: 700;
       color: #181818;
@@ -75,4 +88,7 @@ const { id, question, answer, linkBlock } = props;
       }
     }
   }
+
+
+
 </style>
